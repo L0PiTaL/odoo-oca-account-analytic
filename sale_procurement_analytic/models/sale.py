@@ -16,4 +16,6 @@ class SaleOrderLine(models.Model):
         # project_id field contains actually the analytic account, not the
         # project
         res['account_analytic_id'] = self.order_id.project_id.id
+        res['analytic_tag_ids'] = [(6, 0, [tag.id for tag in self.analytic_tag_ids])]
+
         return res

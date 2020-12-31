@@ -13,3 +13,4 @@ class ProcurementOrder(models.Model):
         comodel_name='account.analytic.account',
         string='Analytic Account',
     )
+    analytic_tag_ids = fields.Many2many('account.analytic.tag', string='Analytic Tags')

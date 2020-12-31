@@ -17,4 +17,6 @@ class Procurement(models.Model):
         analytic = self.account_analytic_id
         if analytic:
             res['analytic_account_id'] = analytic.id
+            res['analytic_tag_ids'] = [(6, 0, [tag.id for tag in self.analytic_tag_ids])]
+
         return res

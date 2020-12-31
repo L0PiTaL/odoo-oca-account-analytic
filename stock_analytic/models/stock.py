@@ -15,6 +15,7 @@ class StockMove(models.Model):
         string='Analytic Account',
         comodel_name='account.analytic.account',
     )
+    analytic_tag_ids = fields.Many2many('account.analytic.tag', string='Analytic Tags')
 
     @api.multi
     def _prepare_account_move_line(self, qty, cost,
@@ -31,5 +32,6 @@ class StockMove(models.Model):
                     categ_id.property_stock_valuation_account_id.id:
                 res[num][2].update({
                     'analytic_account_id': self.analytic_account_id.id,
+                    'analytic_tag_ids': [(6, 0, [tag.id for tag in self.analytic_tag_ids])]
                 })
         return res
